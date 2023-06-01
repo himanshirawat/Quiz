@@ -1,33 +1,21 @@
-const express = require('express')
-const  quizes = require('./db/quizes')
-const quizRouter = require('./router/quiz.router')
-const userdata = require('./db/users')
+const express = require("express");
+const jwt = require("jsonwebtoken");
+const quizRouter = require("./router/quiz.router");
+const loginRouter = require("./router/auth.router")
+const userdata = require("./db/users");
+require("dotenv").config();
 
+const app = express(); // Creating a server
+const PORT = 3000;
 
-const app = express()   // Creating a server
-const PORT = 3000
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
-
-app.use(express.json()) // body parser
-app.use("/quiz",quizRouter);
-
-app.post("/auth/login",(req,res) => {
-    const {username,password} = req.body;
-    // console.log({username,password});
-    // res.json({username, password, message:"got the values"})
-
-    const isUserVerified = userdata.users.some(user=> user.username === username && user.password === password);
-    if (isUserVerified){
-      res.json({message: "User Verified"})
-    } else {
-      res.status(401).json({message : "Invalid Credentials"})
-    }
-})
-
+app.use(express.json()); // body parser
+app.use("/quiz", quizRouter);
+app.use("/auth/login", loginRouter);
 
 app.listen(process.env.PORT || PORT, () => {
-  console.log(`Example app listening on port ${PORT}`)
-})
+  console.log(`Example app listening on port ${PORT}`);
+});
