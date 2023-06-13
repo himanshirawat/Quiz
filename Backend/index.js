@@ -1,21 +1,25 @@
 const express = require("express");
-const jwt = require("jsonwebtoken");
+
 const quizRouter = require("./router/quiz.router");
-const loginRouter = require("./router/auth.router")
-const userdata = require("./db/users");
+const {loginRouter,signupRouter} = require("./router/auth.router")
+const routeNotFound = require("./middleware/routeNotFound");
+const quizes = require("./db/quizes");
 require("dotenv").config();
 
 const app = express(); // Creating a server
+app.use(express.json()); // body parser
+
 const PORT = 3000;
 
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.send("Hello from Himanshi");
 });
 
-app.use(express.json()); // body parser
 app.use("/quiz", quizRouter);
 app.use("/auth/login", loginRouter);
+app.use("/auth/signup", signupRouter);
+app.use(routeNotFound);
 
 app.listen(process.env.PORT || PORT, () => {
-  console.log(`Example app listening on port ${PORT}`);
+  console.log(`Server Started on port ${PORT}`);
 });
