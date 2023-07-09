@@ -36,26 +36,16 @@ export const Navbar = ({route}) => {
             </div>
             <nav className="navigation">
                 <ul className="list-non-bullet">
-                    {
-                        route === "home" && (
-                            <li className="list-item-inline">
-                                <Link to="/auth/login" className="link cursor" onClick={handleAuthClick}> {token ? "Logout": "Login"} </Link>
-                            </li>
-                        )
-                    }
-                    {
-                        route === "result" && (
-                            <Fragment>
-                                <li className="list-item-inline">
-                                    <Link to="/" className="link cursor" onClick={handleEndGameClick}>Home</Link>
-                                </li>
-                                <li className="list-item-inline">
-                                    <span className="link cursor" onClick={handleAuthClick}>Logout</span>
-                                </li>
-                             </Fragment>
-                        )
-                    }
+                    <li className="list-item-inline">
+                        <Link to="/auth/login" className="link cursor" onClick={handleAuthClick}> {token ? "Logout": "Login"} </Link>
+                    </li>
                     
+                    <li className="list-item-inline">
+                        <Link to="/" className="link cursor" onClick={handleEndGameClick}>Home</Link>
+                    </li>
+                    <li className="list-item-inline">
+                        <span className="link cursor" onClick={handleAuthClick}>Logout</span>
+                     </li>
                 </ul>
             </nav>
         </header>

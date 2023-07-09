@@ -10,7 +10,7 @@ require("dotenv").config();
 const app = express(); // Creating a server
 app.use(express.json()); // body parser
 
-const PORT = 3000;
+const PORT = 5000;
 
 app.get("/", (req, res) => {
   res.send("Hello from Himanshi");
