@@ -14,6 +14,6 @@ export const loginHandler = async (username, password) => {
       return token;
     }
   } catch (err) {
-    console.error(err);
+    console.log(err);
   }
 };

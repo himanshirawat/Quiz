@@ -10,6 +10,12 @@ const userdata = {
       },
       {
         id: uuid(),
+        username: "Himanshi",
+        password: "123Himanshi",
+        emailId: "himanshi@example.com",
+      },
+      {
+        id: uuid(),
         username: "anime",
         password: "Naruto",
         emailId: "naruto@example.com",
